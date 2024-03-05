@@ -1,6 +1,6 @@
 import { ref, unref } from 'vue'
 
-export interface ScrollToParams {
+export type ScrollToParams = {
   el: HTMLElement
   to: number
   position: string

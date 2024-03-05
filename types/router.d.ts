@@ -1,5 +1,6 @@
-import type { RouteRecordRaw } from 'vue-router'
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
 import { defineComponent } from 'vue'
+import type { RouteRecordRaw } from 'vue-router'
 
 /**
 * redirect: noredirect        当设置 noredirect 的时候该路由在面包屑导航中不可被点击
@@ -62,7 +63,7 @@ declare global {
     meta: RouteMetaCustom
     component?: Component | string
     children?: AppRouteRecordRaw[]
-    props?: Recordable
+    props?: Record
     fullPath?: string
   }
 

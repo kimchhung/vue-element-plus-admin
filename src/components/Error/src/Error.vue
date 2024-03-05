@@ -5,7 +5,7 @@ import noPermission from '@/assets/svgs/403.svg'
 import { propTypes } from '@/utils/propTypes'
 import { useI18n } from '@/hooks/web/useI18n'
 
-interface ErrorMap {
+type ErrorMap = {
   url: string
   message: string
   buttonText: string

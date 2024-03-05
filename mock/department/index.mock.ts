@@ -1,10 +1,17 @@
+import { SUCCESS_CODE } from '@/constants'
 import { toAnyString } from '@/utils'
 import Mock from 'mockjs'
-import { SUCCESS_CODE } from '@/constants'
 
 const departmentList: any = []
 
-const citys = ['厦门总公司', '北京分公司', '上海分公司', '福州分公司', '深圳分公司', '杭州分公司']
+const citys = [
+  'Xiamen Corporation',
+  'Beijing Branch',
+  'Shanghai Branch',
+  'Fuzhou Branch',
+  'Shenzhen Branch',
+  'Hangzhou Branch'
+]
 
 for (let i = 0; i < 5; i++) {
   departmentList.push({
@@ -19,7 +26,7 @@ for (let i = 0; i < 5; i++) {
     children: [
       {
         // 部门名称
-        departmentName: '研发部',
+        departmentName: 'R & D department',
         id: toAnyString(),
         createTime: '@datetime',
         // 状态
@@ -29,7 +36,7 @@ for (let i = 0; i < 5; i++) {
       },
       {
         // 部门名称
-        departmentName: '产品部',
+        departmentName: 'Product department',
         id: toAnyString(),
         createTime: '@datetime',
         // 状态
@@ -39,7 +46,7 @@ for (let i = 0; i < 5; i++) {
       },
       {
         // 部门名称
-        departmentName: '运营部',
+        departmentName: 'Operations',
         id: toAnyString(),
         createTime: '@datetime',
         // 状态
@@ -49,7 +56,7 @@ for (let i = 0; i < 5; i++) {
       },
       {
         // 部门名称
-        departmentName: '市场部',
+        departmentName: 'Marketing department',
         id: toAnyString(),
         createTime: '@datetime',
         // 状态
@@ -59,7 +66,7 @@ for (let i = 0; i < 5; i++) {
       },
       {
         // 部门名称
-        departmentName: '销售部',
+        departmentName: 'Sales',
         id: toAnyString(),
         createTime: '@datetime',
         // 状态
@@ -69,7 +76,7 @@ for (let i = 0; i < 5; i++) {
       },
       {
         // 部门名称
-        departmentName: '客服部',
+        departmentName: 'Customer service department',
         id: toAnyString(),
         createTime: '@datetime',
         // 状态

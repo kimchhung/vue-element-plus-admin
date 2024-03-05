@@ -12,27 +12,27 @@ export type CrudSchema = Omit<TableColumn, 'children'> & {
   children?: CrudSchema[]
 }
 
-interface CrudSearchParams extends Omit<FormSchema, 'field'> {
+type CrudSearchParams = {
   // 是否隐藏在查询项
   hidden?: boolean
-}
+} & Omit<FormSchema, 'field'>
 
-interface CrudTableParams extends Omit<TableColumn, 'field'> {
+type CrudTableParams = {
   // 是否隐藏表头
   hidden?: boolean
-}
+} & Omit<TableColumn, 'field'>
 
-interface CrudFormParams extends Omit<FormSchema, 'field'> {
+type CrudFormParams = {
   // 是否隐藏表单项
   hidden?: boolean
-}
+} & Omit<FormSchema, 'field'>
 
-interface CrudDescriptionsParams extends Omit<DescriptionsSchema, 'field'> {
+type CrudDescriptionsParams = {
   // 是否隐藏表单项
   hidden?: boolean
-}
+} & Omit<DescriptionsSchema, 'field'>
 
-interface AllSchemas {
+type AllSchemas = {
   searchSchema: FormSchema[]
   tableColumns: TableColumn[]
   formSchema: FormSchema[]

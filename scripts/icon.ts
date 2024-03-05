@@ -1,10 +1,10 @@
-import path from 'path'
+import chalk from 'chalk'
 import fs from 'fs-extra'
 import inquirer from 'inquirer'
-import chalk from 'chalk'
+import path from 'path'
 import pkg from '../package.json'
 
-interface Icon {
+type Icon = {
   name: string
   prefix: string
   icons: string[]

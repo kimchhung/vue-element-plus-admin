@@ -1,9 +1,9 @@
 <script setup lang="tsx">
-import { PropType, ref, unref, nextTick } from 'vue'
+import { getRouteListApi } from '@/api/menu'
 import { Descriptions, DescriptionsSchema } from '@/components/Descriptions'
-import { ElTag, ElTree } from 'element-plus'
 import { findIndex } from '@/utils'
-import { getMenuListApi } from '@/api/menu'
+import { ElTag, ElTree } from 'element-plus'
+import { PropType, nextTick, ref, unref } from 'vue'
 
 defineProps({
   currentRow: {
@@ -32,7 +32,7 @@ const nodeClick = (treeData: any) => {
 
 const treeData = ref<any[]>([])
 const getMenuList = async () => {
-  const res = await getMenuListApi()
+  const res = await getRouteListApi()
   if (res) {
     treeData.value = res.data.list
     await nextTick()

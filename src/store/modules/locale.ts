@@ -1,9 +1,9 @@
+import { LocaleDropdownType } from '@/components/LocaleDropdown'
+import { useStorage } from '@/hooks/web/useStorage'
+import en from 'element-plus/es/locale/lang/en'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import { defineStore } from 'pinia'
 import { store } from '../index'
-import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import en from 'element-plus/es/locale/lang/en'
-import { useStorage } from '@/hooks/web/useStorage'
-import { LocaleDropdownType } from '@/components/LocaleDropdown'
 
 const { getStorage, setStorage } = useStorage('localStorage')
 
@@ -11,7 +11,7 @@ const elLocaleMap = {
   'zh-CN': zhCn,
   en: en
 }
-interface LocaleState {
+type LocaleState = {
   currentLocale: LocaleDropdownType
   localeMap: LocaleDropdownType[]
 }

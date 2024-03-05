@@ -1,9 +1,9 @@
-import { ref, unref } from 'vue'
 import { findPath } from '@/utils/tree'
+import { ref, unref } from 'vue'
 
 type OnlyOneChildType = AppRouteRecordRaw & { noShowingChildren?: boolean }
 
-interface HasOneShowingChild {
+type HasOneShowingChild = {
   oneShowingChild?: boolean
   onlyOneChild?: OnlyOneChildType
 }

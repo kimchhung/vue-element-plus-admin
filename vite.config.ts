@@ -1,19 +1,20 @@
-import { resolve } from 'path'
-import { loadEnv } from 'vite'
-import type { UserConfig, ConfigEnv } from 'vite'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
-import progress from 'vite-plugin-progress'
-import EslintPlugin from 'vite-plugin-eslint'
-import { ViteEjsPlugin } from 'vite-plugin-ejs'
-import { viteMockServe } from 'vite-plugin-mock'
-import PurgeIcons from 'vite-plugin-purge-icons'
-import ServerUrlCopy from 'vite-plugin-url-copy'
-import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
-import UnoCSS from 'unocss/vite'
+import { resolve } from 'path'
 import { visualizer } from 'rollup-plugin-visualizer'
+import UnoCSS from 'unocss/vite'
+import type { ConfigEnv, UserConfig } from 'vite'
+import { loadEnv } from 'vite'
+import checker from 'vite-plugin-checker'
+import { ViteEjsPlugin } from 'vite-plugin-ejs'
+import EslintPlugin from 'vite-plugin-eslint'
+import { viteMockServe } from 'vite-plugin-mock'
+import progress from 'vite-plugin-progress'
+import PurgeIcons from 'vite-plugin-purge-icons'
+import { ElementPlusResolve, createStyleImportPlugin } from 'vite-plugin-style-import'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import ServerUrlCopy from 'vite-plugin-url-copy'
 
 // https://vitejs.dev/config/
 const root = process.cwd()
@@ -33,6 +34,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   return {
     base: env.VITE_BASE_PATH,
     plugins: [
+      checker({
+        typescript: true
+      }),
       Vue({
         script: {
           // 开启defineModel

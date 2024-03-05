@@ -4,7 +4,7 @@ import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
 export type { ContextMenuSchema } from './src/types'
 
-export interface ContextMenuExpose {
+export type ContextMenuExpose = {
   elDropdownMenuRef: ComponentRef<typeof ElDropdown>
   tagItem: RouteLocationNormalizedLoaded
 }

@@ -1,8 +1,8 @@
 import { useI18n } from '@/hooks/web/useI18n'
-import { PlaceholderModel, FormSchema, ComponentNameEnum, ColProps } from '../types'
-import { isFunction } from '@/utils/is'
 import { firstUpperCase, humpToDash } from '@/utils'
-import { set, get } from 'lodash-es'
+import { isFunction } from '@/utils/is'
+import { get, set } from 'lodash-es'
+import { ColProps, ComponentNameEnum, FormSchema, PlaceholderModel } from '../types'
 
 const { t } = useI18n()
 

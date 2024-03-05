@@ -1,25 +1,33 @@
 <script lang="tsx">
+import { BaseButton } from '@/components/Button'
+import { Icon } from '@/components/Icon'
+import { createVideoViewer } from '@/components/VideoPlayer'
+import { propTypes } from '@/utils/propTypes'
+import { getSlot } from '@/utils/tsxHelper'
 import {
+  ComponentSize,
+  ElCard,
+  ElEmpty,
+  ElImage,
+  ElPagination,
   ElTable,
   ElTableColumn,
-  ElPagination,
-  ComponentSize,
-  ElTooltipProps,
-  ElImage,
-  ElEmpty,
-  ElCard
+  ElTooltipProps
 } from 'element-plus'
-import { defineComponent, PropType, ref, computed, unref, watch, onMounted } from 'vue'
-import { propTypes } from '@/utils/propTypes'
-import { setIndex } from './helper'
-import type { TableProps, TableColumn, Pagination, TableSetProps } from './types'
-import { set, get } from 'lodash-es'
-import { CSSProperties } from 'vue'
-import { getSlot } from '@/utils/tsxHelper'
+import { get, set } from 'lodash-es'
+import {
+  CSSProperties,
+  PropType,
+  computed,
+  defineComponent,
+  onMounted,
+  ref,
+  unref,
+  watch
+} from 'vue'
 import TableActions from './components/TableActions.vue'
-import { createVideoViewer } from '@/components/VideoPlayer'
-import { Icon } from '@/components/Icon'
-import { BaseButton } from '@/components/Button'
+import { setIndex } from './helper'
+import type { Pagination, TableColumn, TableProps, TableSetProps } from './types'
 
 export default defineComponent({
   name: 'Table',

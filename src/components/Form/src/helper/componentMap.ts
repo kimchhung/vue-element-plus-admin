@@ -1,9 +1,15 @@
-import type { Component } from 'vue'
+import { Editor } from '@/components/Editor'
+import { IAgree } from '@/components/IAgree'
+import { IconPicker } from '@/components/IconPicker'
+import { InputPassword } from '@/components/InputPassword'
+import { JsonEditor } from '@/components/JsonEditor'
 import {
+  ElAutocomplete,
   ElCascader,
   ElCheckboxGroup,
   ElColorPicker,
   ElDatePicker,
+  ElDivider,
   ElInput,
   ElInputNumber,
   ElRadioGroup,
@@ -15,16 +21,10 @@ import {
   ElTimePicker,
   ElTimeSelect,
   ElTransfer,
-  ElAutocomplete,
-  ElDivider,
   ElTreeSelect,
   ElUpload
 } from 'element-plus'
-import { InputPassword } from '@/components/InputPassword'
-import { Editor } from '@/components/Editor'
-import { JsonEditor } from '@/components/JsonEditor'
-import { IconPicker } from '@/components/IconPicker'
-import { IAgree } from '@/components/IAgree'
+import type { Component } from 'vue'
 import { ComponentName } from '../types'
 
 const componentMap: Recordable<Component, ComponentName> = {

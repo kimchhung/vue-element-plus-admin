@@ -9,8 +9,8 @@ const { required } = useValidator()
 
 const props = defineProps({
   currentRow: {
-    type: Object as PropType<Nullable<Recordable>>,
-    default: () => null
+    type: Object as PropType<Recordable>,
+    default: () => undefined
   },
   formSchema: {
     type: Array as PropType<FormSchema[]>,
@@ -19,12 +19,9 @@ const props = defineProps({
 })
 
 const rules = reactive({
-  title: [required()],
-  author: [required()],
-  importance: [required()],
-  pageviews: [required()],
-  display_time: [required()],
-  content: [required()]
+  username: [required()],
+  account: [required()],
+  'department.id': [required()]
 })
 
 const { formRegister, formMethods } = useForm()

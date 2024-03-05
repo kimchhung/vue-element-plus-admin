@@ -1,13 +1,13 @@
 <script setup lang="tsx">
+import { getRouteListApi } from '@/api/menu'
 import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
-import { PropType, reactive, watch, ref, unref, nextTick } from 'vue'
-import { useValidator } from '@/hooks/web/useValidator'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ElTree, ElCheckboxGroup, ElCheckbox } from 'element-plus'
-import { getMenuListApi } from '@/api/menu'
-import { filter, eachTree } from '@/utils/tree'
+import { useValidator } from '@/hooks/web/useValidator'
 import { findIndex } from '@/utils'
+import { eachTree, filter } from '@/utils/tree'
+import { ElCheckbox, ElCheckboxGroup, ElTree } from 'element-plus'
+import { PropType, nextTick, reactive, ref, unref, watch } from 'vue'
 
 const { t } = useI18n()
 
@@ -109,7 +109,7 @@ const { setValues, getFormData, getElFormExpose } = formMethods
 
 const treeData = ref([])
 const getMenuList = async () => {
-  const res = await getMenuListApi()
+  const res = await getRouteListApi()
   if (res) {
     treeData.value = res.data.list
     if (!props.currentRow) return

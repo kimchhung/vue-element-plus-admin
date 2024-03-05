@@ -1,14 +1,14 @@
 <script setup lang="tsx">
+import { getRouteListApi } from '@/api/menu'
+import { BaseButton } from '@/components/Button'
 import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
-import { PropType, reactive, watch, ref, unref } from 'vue'
-import { useValidator } from '@/hooks/web/useValidator'
 import { useI18n } from '@/hooks/web/useI18n'
-import { getMenuListApi } from '@/api/menu'
+import { useValidator } from '@/hooks/web/useValidator'
 import { ElTag } from 'element-plus'
-import AddButtonPermission from './AddButtonPermission.vue'
-import { BaseButton } from '@/components/Button'
 import { cloneDeep } from 'lodash-es'
+import { PropType, reactive, ref, unref, watch } from 'vue'
+import AddButtonPermission from './AddButtonPermission.vue'
 
 const { t } = useI18n()
 
@@ -124,7 +124,7 @@ const formSchema = reactive<FormSchema[]>([
       }
     },
     optionApi: async () => {
-      const res = await getMenuListApi()
+      const res = await getRouteListApi()
       return res.data.list || []
     }
   },

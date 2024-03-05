@@ -1,6 +1,6 @@
-import { ref, unref, nextTick } from 'vue'
 import { FormSchema, FormSetProps } from '@/components/Form'
 import { SearchExpose, SearchProps } from '@/components/Search'
+import { nextTick, ref, unref } from 'vue'
 
 export const useSearch = () => {
   // Search实例
@@ -80,7 +80,7 @@ export const useSearch = () => {
      */
     getFormData: async <T = Recordable>(): Promise<T> => {
       const search = await getSearch()
-      return search?.getFormData() as T
+      return search?.formModel as T
     }
   }
 

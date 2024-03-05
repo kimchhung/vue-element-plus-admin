@@ -1,17 +1,15 @@
 <script setup lang="tsx">
+import { BaseButton } from '@/components/Button'
 import { ContentWrap } from '@/components/ContentWrap'
 import { Search } from '@/components/Search'
-import { useI18n } from '@/hooks/web/useI18n'
-import { ElTag } from 'element-plus'
 import { Table } from '@/components/Table'
-import { getTableListApi, delTableListApi } from '@/api/table'
-import { useTable } from '@/hooks/web/useTable'
-import { TableData } from '@/api/table/types'
-import { reactive, ref, unref } from 'vue'
-import { useRouter } from 'vue-router'
 import { useEventBus } from '@/hooks/event/useEventBus'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
-import { BaseButton } from '@/components/Button'
+import { useI18n } from '@/hooks/web/useI18n'
+import { useTable } from '@/hooks/web/useTable'
+import { ElTag } from 'element-plus'
+import { reactive, ref, unref } from 'vue'
+import { useRouter } from 'vue-router'
 
 defineOptions({
   name: 'ExamplePage'
@@ -29,20 +27,20 @@ const setSearchParams = (params: any) => {
 
 const { tableRegister, tableState, tableMethods } = useTable({
   fetchDataApi: async () => {
-    const { currentPage, pageSize } = tableState
-    const res = await getTableListApi({
-      pageIndex: unref(currentPage),
-      pageSize: unref(pageSize),
-      ...unref(searchParams)
-    })
+    // const { currentPage, pageSize } = tableState
+    // const res = await getTableListApi({
+    //   pageIndex: unref(currentPage),
+    //   pageSize: unref(pageSize),
+    //   ...unref(searchParams)
+    // })
     return {
-      list: res.data.list,
-      total: res.data.total
+      list: [],
+      total: 0
     }
   },
   fetchDelApi: async () => {
-    const res = await delTableListApi(unref(ids))
-    return !!res
+    // const res = await delTableListApi(unref(ids))
+    return true
   }
 })
 const { loading, dataList, total, currentPage, pageSize } = tableState
@@ -256,16 +254,16 @@ const AddAction = () => {
 
 const delLoading = ref(false)
 
-const delData = async (row: TableData | null) => {
+const delData = async (row: Recordable | null) => {
   const elTableExpose = await getElTableExpose()
-  ids.value = row ? [row.id] : elTableExpose?.getSelectionRows().map((v: TableData) => v.id) || []
+  ids.value = row ? [row.id] : elTableExpose?.getSelectionRows().map((v: Recordable) => v.id) || []
   delLoading.value = true
   await delList(unref(ids).length).finally(() => {
     delLoading.value = false
   })
 }
 
-const action = (row: TableData, type: string) => {
+const action = (row: Recordable, type: string) => {
   push(`/example/example-${type}?id=${row.id}`)
 }
 </script>

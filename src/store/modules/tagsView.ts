@@ -1,12 +1,12 @@
 import router from '@/router'
-import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import { findIndex } from '@/utils'
 import { getRawRoute } from '@/utils/routerHelper'
 import { defineStore } from 'pinia'
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { store } from '../index'
-import { findIndex } from '@/utils'
-import { useUserStoreWithOut } from './user'
+import { useAdminStoreWithOut } from './admin'
 
-export interface TagsViewState {
+export type TagsViewState = {
   visitedViews: RouteLocationNormalizedLoaded[]
   cachedViews: Set<string>
   selectedTag?: RouteLocationNormalizedLoaded
@@ -90,7 +90,7 @@ export const useTagsViewStore = defineStore('tagsView', {
     },
     // 删除所有tag
     delAllVisitedViews() {
-      const userStore = useUserStoreWithOut()
+      const userStore = useAdminStoreWithOut()
 
       // const affixTags = this.visitedViews.filter((tag) => tag.meta.affix)
       this.visitedViews = userStore.getUserInfo

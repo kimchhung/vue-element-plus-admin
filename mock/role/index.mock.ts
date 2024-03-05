@@ -1,6 +1,6 @@
-import Mock from 'mockjs'
 import { SUCCESS_CODE } from '@/constants'
 import { toAnyString } from '@/utils'
+import Mock from 'mockjs'
 
 const timeout = 1000
 
@@ -741,7 +741,7 @@ const testList: string[] = [
 
 const List: any[] = []
 
-const roleNames = ['超级管理员', '管理员', '普通用户', '游客']
+const roleNames = ['Super administrator', 'adminisgeneral useror', '普通用户', 'Tourist']
 const menus = [
   [
     {
@@ -752,7 +752,7 @@ const menus = [
       status: Mock.Random.integer(0, 1),
       id: 1,
       meta: {
-        title: '首页',
+        title: 'front page',
         icon: 'ant-design:dashboard-filled',
         alwaysShow: true
       },
@@ -764,7 +764,7 @@ const menus = [
           status: Mock.Random.integer(0, 1),
           id: 2,
           meta: {
-            title: '分析页',
+            title: 'Analysis page',
             noCache: true
           }
         },
@@ -775,7 +775,7 @@ const menus = [
           status: Mock.Random.integer(0, 1),
           id: 3,
           meta: {
-            title: '工作台',
+            title: 'Workbench',
             noCache: true
           }
         }
@@ -785,7 +785,7 @@ const menus = [
       path: '/external-link',
       component: '#',
       meta: {
-        title: '文档',
+        title: 'document',
         icon: 'clarity:document-solid'
       },
       name: 'ExternalLink',
@@ -811,7 +811,7 @@ const menus = [
       status: Mock.Random.integer(0, 1),
       id: 6,
       meta: {
-        title: '菜单',
+        title: 'menu',
         icon: 'carbon:skill-level-advanced'
       },
       children: [

@@ -5,8 +5,8 @@ import { Descriptions, DescriptionsSchema } from '@/components/Descriptions'
 
 defineProps({
   currentRow: {
-    type: Object as PropType<Nullable<Recordable>>,
-    default: () => null
+    type: Object as PropType<Recordable>,
+    default: () => undefined
   },
   detailSchema: {
     type: Array as PropType<DescriptionsSchema[]>,

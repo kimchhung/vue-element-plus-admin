@@ -1,5 +1,5 @@
-import Mock from 'mockjs'
 import { SUCCESS_CODE } from '@/constants'
+import Mock from 'mockjs'
 
 const timeout = 1000
 
@@ -106,9 +106,9 @@ export default [
                   id: 5,
                   type: 1,
                   parentId: 4,
-                  title: '文档',
+                  title: 'document',
                   meta: {
-                    title: '文档'
+                    title: 'document'
                   }
                 }
               ]
@@ -122,9 +122,9 @@ export default [
               id: 6,
               type: 0,
               parentId: undefined,
-              title: '菜单',
+              title: 'menu',
               meta: {
-                title: '菜单',
+                title: 'menu',
                 icon: 'carbon:skill-level-advanced'
               },
               children: [
@@ -211,9 +211,9 @@ export default [
               id: 12,
               type: 0,
               parentId: undefined,
-              title: '综合示例',
+              title: 'Comprehensive example',
               meta: {
-                title: '综合示例',
+                title: 'Comprehensive example',
                 icon: 'ep:management',
                 alwaysShow: true
               },
@@ -260,24 +260,24 @@ export default [
                   title: '综合示例-页面',
                   permissionList: [
                     {
-                      label: '新增',
+                      label: 'Increase',
                       value: 'edit'
                     },
                     {
-                      label: '编辑',
+                      label: 'edit',
                       value: 'edit'
                     },
                     {
-                      label: '删除',
+                      label: 'delete',
                       value: 'delete'
                     },
                     {
-                      label: '查看',
+                      label: 'Check',
                       value: 'view'
                     }
                   ],
                   meta: {
-                    title: '综合示例-页面'
+                    title: 'Comprehensive Example-Page'
                   }
                 },
                 {
@@ -288,7 +288,7 @@ export default [
                   id: 15,
                   type: 1,
                   parentId: 12,
-                  title: '综合示例-新增',
+                  title: 'Comprehensive Example-New',
                   meta: {
                     title: '综合示例-新增',
                     noTagsView: true,

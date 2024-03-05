@@ -1,13 +1,12 @@
-import { defineStore } from 'pinia'
-import { store } from '../index'
-import { setCssVar, humpToUnderline } from '@/utils'
+import { humpToUnderline, setCssVar } from '@/utils'
 import { colorIsDark, hexToRGB, lighten, mix } from '@/utils/color'
-import { ElMessage, ComponentSize } from 'element-plus'
-import { useCssVar } from '@vueuse/core'
+import { useCssVar, useDark } from '@vueuse/core'
+import { ComponentSize, ElMessage } from 'element-plus'
+import { defineStore } from 'pinia'
 import { unref } from 'vue'
-import { useDark } from '@vueuse/core'
+import { store } from '../index'
 
-interface AppState {
+type AppState = {
   breadcrumb: boolean
   breadcrumbIcon: boolean
   collapse: boolean

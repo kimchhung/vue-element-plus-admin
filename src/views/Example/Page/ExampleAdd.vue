@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import Write from './components/Write.vue'
 import { ContentDetailWrap } from '@/components/ContentDetailWrap'
-import { ref, unref } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
+import { ref, unref } from 'vue'
 import { useRouter } from 'vue-router'
-import { saveTableApi } from '@/api/table'
-import { useEventBus } from '@/hooks/event/useEventBus'
+import Write from './components/Write.vue'
+// import { saveTableApi } from '@/api/table'
 
-const { emit } = useEventBus()
+// const { emit } = useEventBus()
 
 const { push, go } = useRouter()
 
@@ -22,15 +21,15 @@ const save = async () => {
   const formData = await write?.submit()
   if (formData) {
     loading.value = true
-    const res = await saveTableApi(formData)
-      .catch(() => {})
-      .finally(() => {
-        loading.value = false
-      })
-    if (res) {
-      emit('getList', 'add')
-      push('/example/example-page')
-    }
+    // const res = await saveTableApi(formData)
+    //   .catch(() => {})
+    //   .finally(() => {
+    //     loading.value = false
+    //   })
+    // if (res) {
+    //   emit('getList', 'add')
+    //   push('/example/example-page')
+    // }
   }
 }
 </script>

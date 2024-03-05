@@ -1,13 +1,13 @@
 import type {
-  InternalAxiosRequestConfig,
-  AxiosResponse,
-  AxiosRequestConfig,
+  AxiosError,
   AxiosInstance,
+  AxiosRequestConfig,
   AxiosRequestHeaders,
-  AxiosError
+  AxiosResponse,
+  InternalAxiosRequestConfig
 } from 'axios'
 
-interface RequestInterceptors<T> {
+type RequestInterceptors<T> = {
   // 请求拦截
   requestInterceptors?: (config: InternalAxiosRequestConfig) => InternalAxiosRequestConfig
   requestInterceptorsCatch?: (err: any) => any
@@ -16,16 +16,16 @@ interface RequestInterceptors<T> {
   responseInterceptorsCatch?: (err: any) => any
 }
 
-interface RequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
+type RequestConfig<T = AxiosResponse> = {
   interceptors?: RequestInterceptors<T>
-}
+} & AxiosRequestConfig
 
 export {
-  AxiosResponse,
-  RequestInterceptors,
-  RequestConfig,
+  AxiosError,
   AxiosInstance,
-  InternalAxiosRequestConfig,
   AxiosRequestHeaders,
-  AxiosError
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+  RequestConfig,
+  RequestInterceptors
 }

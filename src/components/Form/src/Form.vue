@@ -1,38 +1,38 @@
 <script lang="tsx">
-import { PropType, defineComponent, ref, computed, unref, watch, onMounted } from 'vue'
-import {
-  ElForm,
-  ElFormItem,
-  ElRow,
-  ElCol,
-  FormRules,
-  ComponentSize
-  // FormItemProp
-} from 'element-plus'
-import { componentMap } from './helper/componentMap'
+import { useDesign } from '@/hooks/web/useDesign'
+import { findIndex } from '@/utils'
 import { propTypes } from '@/utils/propTypes'
 import { getSlot } from '@/utils/tsxHelper'
 import {
-  setTextPlaceholder,
-  setGridProp,
-  setComponentProps,
-  setItemComponentSlots,
-  initModel
-} from './helper'
-import { useRenderSelect } from './components/useRenderSelect'
-import { useRenderRadio } from './components/useRenderRadio'
-import { useRenderCheckbox } from './components/useRenderCheckbox'
-import { useDesign } from '@/hooks/web/useDesign'
-import { findIndex } from '@/utils'
+  ComponentSize,
+  // FormItemProp
+  ElCol,
+  ElForm,
+  ElFormItem,
+  ElRow,
+  FormRules
+} from 'element-plus'
 import { get, set } from 'lodash-es'
-import { FormProps } from './types'
+import { PropType, computed, defineComponent, onMounted, ref, unref, watch } from 'vue'
+import { useRenderCheckbox } from './components/useRenderCheckbox'
+import { useRenderRadio } from './components/useRenderRadio'
+import { useRenderSelect } from './components/useRenderSelect'
 import {
+  initModel,
+  setComponentProps,
+  setGridProp,
+  setItemComponentSlots,
+  setTextPlaceholder
+} from './helper'
+import { componentMap } from './helper/componentMap'
+import {
+  CheckboxGroupComponentProps,
+  ComponentNameEnum,
+  FormProps,
   FormSchema,
   FormSetProps,
-  ComponentNameEnum,
-  SelectComponentProps,
   RadioGroupComponentProps,
-  CheckboxGroupComponentProps
+  SelectComponentProps
 } from './types'
 
 const { renderSelectOptions } = useRenderSelect()

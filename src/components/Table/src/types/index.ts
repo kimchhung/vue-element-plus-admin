@@ -1,5 +1,5 @@
 import { TableProps as ElTableProps } from 'element-plus'
-export interface TableColumn {
+export type TableColumn<T extends object = {}> = {
   field: string
   label?: string
   type?: string
@@ -7,9 +7,9 @@ export interface TableColumn {
    * 是否隐藏
    */
   hidden?: boolean
-  children?: TableColumn[]
+  children?: TableColumn<T>[]
   slots?: {
-    default?: (...args: any[]) => JSX.Element | JSX.Element[] | null
+    default?: (data: TableSlotDefault<T>) => JSX.Element | JSX.Element[] | null
     header?: (...args: any[]) => JSX.Element | null
   }
   index?: number | ((index: number) => number)
@@ -39,14 +39,14 @@ export interface TableColumn {
   [key: string]: any
 }
 
-export interface TableSlotDefault {
-  row: Recordable
-  column: TableColumn
+export type TableSlotDefault<T extends object> = {
+  row: T
+  column: TableColumn<T>
   $index: number
   [key: string]: any
 }
 
-export interface Pagination {
+export type Pagination = {
   small?: boolean
   background?: boolean
   pageSize?: number
@@ -65,20 +65,20 @@ export interface Pagination {
   hideOnSinglePage?: boolean
 }
 
-export interface TableSetProps {
+export type TableSetProps = {
   field: string
   path: string
   value: any
 }
 
-export interface TableProps extends Omit<Partial<ElTableProps<any[]>>, 'data'> {
+export type TableProps<T extends object = {}> = {
   pageSize?: number
   currentPage?: number
   showAction?: boolean
   // 是否所有的超出隐藏，优先级低于schema中的showOverflowTooltip,
   showOverflowTooltip?: boolean
   // 表头
-  columns?: TableColumn[]
+  columns?: TableColumn<T>[]
   // 是否展示分页
   pagination?: Pagination | undefined
   // 仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key）
@@ -94,5 +94,5 @@ export interface TableProps extends Omit<Partial<ElTableProps<any[]>>, 'data'> {
   imagePreview?: string[]
   videoPreview?: string[]
   sortable?: boolean
-  data?: Recordable
-}
+  data?: T
+} & Omit<Partial<ElTableProps<any[]>>, 'data'>

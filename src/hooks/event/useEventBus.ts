@@ -1,7 +1,7 @@
 import mitt from 'mitt'
 import { onBeforeUnmount } from 'vue'
 
-interface Option {
+type Option = {
   name: string // 事件名称
   callback: Fn // 回调
 }

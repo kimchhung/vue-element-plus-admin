@@ -5,7 +5,7 @@ import { ref, watch, unref, nextTick, onMounted } from 'vue'
 
 const { t } = useI18n()
 
-interface UseTableConfig {
+type UseTableConfig = {
   /**
    * 是否初始化的时候请求一次
    */

@@ -1,15 +1,14 @@
 <script setup lang="tsx">
-import { PropType, reactive } from 'vue'
-import type { TableData } from '@/api/table/types'
 import { Descriptions, DescriptionsSchema } from '@/components/Descriptions'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElTag } from 'element-plus'
+import { PropType, reactive } from 'vue'
 
 const { t } = useI18n()
 
 defineProps({
   currentRow: {
-    type: Object as PropType<Nullable<TableData>>,
+    type: Object as PropType<Nullable<Recordable>>,
     default: () => null
   }
 })

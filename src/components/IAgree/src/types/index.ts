@@ -1,10 +1,10 @@
-export interface LinkItem {
+export type LinkItem = {
   text: string
   url?: string
   onClick?: () => void
 }
 
-export interface IAgreeProps {
+export type IAgreeProps = {
   text: string
   link: LinkItem[]
 }

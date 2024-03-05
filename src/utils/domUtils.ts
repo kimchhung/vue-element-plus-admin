@@ -3,7 +3,7 @@ const ieVersion = isServer ? 0 : Number((document as any).documentMode)
 const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g
 const MOZ_HACK_REGEXP = /^moz([A-Z])/
 
-export interface ViewportOffsetResult {
+export type ViewportOffsetResult = {
   left: number
   top: number
   right: number

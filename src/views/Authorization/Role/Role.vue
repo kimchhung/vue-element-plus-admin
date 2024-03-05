@@ -1,17 +1,17 @@
 <script setup lang="tsx">
-import { reactive, ref, unref } from 'vue'
 import { getRoleListApi } from '@/api/role'
-import { useTable } from '@/hooks/web/useTable'
-import { useI18n } from '@/hooks/web/useI18n'
-import { Table, TableColumn } from '@/components/Table'
-import { ElTag } from 'element-plus'
-import { Search } from '@/components/Search'
-import { FormSchema } from '@/components/Form'
-import { ContentWrap } from '@/components/ContentWrap'
-import Write from './components/Write.vue'
-import Detail from './components/Detail.vue'
-import { Dialog } from '@/components/Dialog'
 import { BaseButton } from '@/components/Button'
+import { ContentWrap } from '@/components/ContentWrap'
+import { Dialog } from '@/components/Dialog'
+import { FormSchema } from '@/components/Form'
+import { Search } from '@/components/Search'
+import { Table, TableColumn } from '@/components/Table'
+import { useI18n } from '@/hooks/web/useI18n'
+import { useTable } from '@/hooks/web/useTable'
+import { ElTag } from 'element-plus'
+import { reactive, ref, unref } from 'vue'
+import Detail from './components/Detail.vue'
+import Write from './components/Write.vue'
 
 const { t } = useI18n()
 
@@ -20,7 +20,8 @@ const { tableRegister, tableState, tableMethods } = useTable({
     const res = await getRoleListApi()
     return {
       list: res.data.list || [],
-      total: res.data.total
+      // total: Recordables.data.total
+      total: 0
     }
   }
 })

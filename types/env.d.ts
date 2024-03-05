@@ -7,7 +7,7 @@ declare module '*.vue' {
   export default component
 }
 
-interface ImportMetaEnv {
+type ImportMetaEnv = {
   readonly VITE_NODE_ENV: string
   readonly VITE_APP_TITLE: string
   readonly VITE_API_BASE_PATH: string
@@ -24,7 +24,7 @@ interface ImportMetaEnv {
 }
 
 declare global {
-  interface ImportMeta {
+  type ImportMeta = {
     readonly env: ImportMetaEnv
   }
 }

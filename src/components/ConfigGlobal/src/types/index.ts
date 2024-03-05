@@ -1,5 +1,5 @@
 import { ComponentSize } from 'element-plus'
 
-export interface ConfigGlobalTypes {
+export type ConfigGlobalTypes = {
   size?: ComponentSize
 }

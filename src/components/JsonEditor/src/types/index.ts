@@ -1,4 +1,4 @@
-export interface JsonEditorProps {
+export type JsonEditorProps = {
   value: any
   deep?: number
   showLength?: boolean

@@ -1,4 +1,4 @@
-interface TreeHelperConfig {
+type TreeHelperConfig = {
   id: string
   children: string
   pid: string

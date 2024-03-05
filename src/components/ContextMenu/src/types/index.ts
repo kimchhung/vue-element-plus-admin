@@ -1,4 +1,4 @@
-export interface ContextMenuSchema {
+export type ContextMenuSchema = {
   disabled?: boolean
   divided?: boolean
   icon?: string

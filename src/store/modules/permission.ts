@@ -1,14 +1,10 @@
-import { defineStore } from 'pinia'
 import { asyncRouterMap, constantRouterMap } from '@/router'
-import {
-  generateRoutesByFrontEnd,
-  generateRoutesByServer,
-  flatMultiLevelRoutes
-} from '@/utils/routerHelper'
-import { store } from '../index'
+import { flatMultiLevelRoutes, generateRoutesByServer } from '@/utils/routerHelper'
 import { cloneDeep } from 'lodash-es'
+import { defineStore } from 'pinia'
+import { store } from '../index'
 
-export interface PermissionState {
+export type PermissionState = {
   routers: AppRouteRecordRaw[]
   addRouters: AppRouteRecordRaw[]
   isAddRouters: boolean
@@ -37,23 +33,21 @@ export const usePermissionStore = defineStore('permission', {
     }
   },
   actions: {
-    generateRoutes(
+    setIsAddRouters(state: boolean): void {
+      this.isAddRouters = state
+    },
+    setMenuTabRouters(routers: AppRouteRecordRaw[]): void {
+      this.menuTabRouters = routers
+    },
+    async generateRoutes(
       type: 'server' | 'frontEnd' | 'static',
-      routers?: AppCustomRouteRecordRaw[] | string[]
-    ): Promise<unknown> {
-      return new Promise<void>((resolve) => {
-        let routerMap: AppRouteRecordRaw[] = []
-        if (type === 'server') {
-          // 模拟后端过滤菜单
-          routerMap = generateRoutesByServer(routers as AppCustomRouteRecordRaw[])
-        } else if (type === 'frontEnd') {
-          // 模拟前端过滤菜单
-          routerMap = generateRoutesByFrontEnd(cloneDeep(asyncRouterMap), routers as string[])
-        } else {
-          // 直接读取静态路由表
-          routerMap = cloneDeep(asyncRouterMap)
-        }
-        // 动态路由，404一定要放到最后面
+      routers: AppCustomRouteRecordRaw[]
+    ) {
+      try {
+        const routerMap =
+          type === 'server' ? await generateRoutesByServer(routers) : cloneDeep(asyncRouterMap)
+
+        // Dynamic routing, 404 must be put to the end
         this.addRouters = routerMap.concat([
           {
             path: '/:path(.*)*',
@@ -65,16 +59,13 @@ export const usePermissionStore = defineStore('permission', {
             }
           }
         ])
-        // 渲染菜单的所有路由
+
+        // All routes of the rendering menu
         this.routers = cloneDeep(constantRouterMap).concat(routerMap)
-        resolve()
-      })
-    },
-    setIsAddRouters(state: boolean): void {
-      this.isAddRouters = state
-    },
-    setMenuTabRouters(routers: AppRouteRecordRaw[]): void {
-      this.menuTabRouters = routers
+      } catch (error) {
+        // Handle any errors that occur during the generation of routes
+        console.error('Error generating routes:', error)
+      }
     }
   },
   persist: {

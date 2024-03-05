@@ -1,31 +1,31 @@
+import { IAgreeProps } from '@/components/IAgree'
+import { JsonEditorProps } from '@/components/JsonEditor'
+import { IEditorConfig } from '@wangeditor/editor'
 import {
   AutocompleteProps,
-  InputNumberProps,
-  CascaderProps,
   CascaderNode,
+  CascaderProps,
   CascaderValue,
-  SwitchProps,
-  ComponentSize,
-  InputProps,
-  RateProps,
-  ColorPickerProps,
-  TransferProps,
-  RadioGroupProps,
-  RadioButtonProps,
   CheckboxGroupProps,
-  DividerProps,
+  ColorPickerProps,
+  ComponentSize,
   DatePickerProps,
+  DividerProps,
   FormItemProps as ElFormItemProps,
   FormProps as ElFormProps,
   ISelectProps,
+  InputNumberProps,
+  InputProps,
+  RadioButtonProps,
+  RadioGroupProps,
+  RateProps,
+  SwitchProps,
+  TransferProps,
   UploadProps
 } from 'element-plus'
-import { IEditorConfig } from '@wangeditor/editor'
-import { JsonEditorProps } from '@/components/JsonEditor'
-import { IAgreeProps } from '@/components/IAgree'
 import { CSSProperties } from 'vue'
 
-export interface PlaceholderModel {
+export type PlaceholderModel = {
   placeholder?: string
   startPlaceholder?: string
   endPlaceholder?: string
@@ -71,12 +71,12 @@ type CamelCaseComponentName = keyof typeof ComponentNameEnum extends infer K
 
 export type ComponentName = CamelCaseComponentName
 
-export interface InputPasswordComponentProps {
+export type InputPasswordComponentProps = {
   strength?: boolean
   style?: CSSProperties
 }
 
-export interface InputComponentProps extends Partial<InputProps> {
+export type InputComponentProps = {
   rows?: number
   on?: {
     blur?: (event: FocusEvent) => void
@@ -92,9 +92,9 @@ export interface InputComponentProps extends Partial<InputProps> {
     append?: (...args: any[]) => JSX.Element | null
   }
   style?: CSSProperties
-}
+} & Partial<InputProps>
 
-export interface AutocompleteComponentProps extends Partial<AutocompleteProps> {
+export type AutocompleteComponentProps = {
   on?: {
     select?: (item: any) => void
     change?: (value: string | number) => void
@@ -107,18 +107,18 @@ export interface AutocompleteComponentProps extends Partial<AutocompleteProps> {
     append?: (...args: any[]) => JSX.Element | null
   }
   style?: CSSProperties
-}
+} & Partial<AutocompleteProps>
 
-export interface InputNumberComponentProps extends Partial<InputNumberProps> {
+export type InputNumberComponentProps = {
   on?: {
     change?: (currentValue: number | undefined, oldValue: number | undefined) => void
     blur?: (event: FocusEvent) => void
     focus?: (event: FocusEvent) => void
   }
   style?: CSSProperties
-}
+} & Partial<InputNumberProps>
 
-export interface SelectOption {
+export type SelectOption = {
   label?: string
   disabled?: boolean
   value?: any
@@ -127,7 +127,7 @@ export interface SelectOption {
   [key: string]: any
 }
 
-export interface SelectComponentProps extends Omit<Partial<ISelectProps>, 'options'> {
+export type SelectComponentProps = {
   /**
    * 数据源的字段别名
    */
@@ -154,9 +154,9 @@ export interface SelectComponentProps extends Omit<Partial<ISelectProps>, 'optio
   }
   options?: SelectOption[]
   style?: CSSProperties
-}
+} & Omit<Partial<ISelectProps>, 'options'>
 
-export interface SelectV2ComponentProps {
+export type SelectV2ComponentProps = {
   multiple?: boolean
   disabled?: boolean
   valueKey?: string
@@ -200,7 +200,7 @@ export interface SelectV2ComponentProps {
   style?: CSSProperties
 }
 
-export interface CascaderComponentProps {
+export type CascaderComponentProps = {
   options?: Record<string, unknown>[]
   props?: CascaderProps
   size?: ComponentSize
@@ -234,29 +234,29 @@ export interface CascaderComponentProps {
   style?: CSSProperties
 }
 
-export interface SwitchComponentProps extends Partial<SwitchProps> {
+export type SwitchComponentProps = {
   on?: {
     change?: (value: boolean | string | number) => void
   }
   style?: CSSProperties
-}
+} & Partial<SwitchProps>
 
-export interface RateComponentProps extends Partial<RateProps> {
+export type RateComponentProps = {
   on?: {
     change?: (value: number) => void
   }
   style?: CSSProperties
-}
+} & Partial<RateProps>
 
-export interface ColorPickerComponentProps extends Partial<ColorPickerProps> {
+export type ColorPickerComponentProps = {
   on?: {
     change?: (value: string) => void
     activeChange?: (value: string) => void
   }
   style?: CSSProperties
-}
+} & Partial<ColorPickerProps>
 
-export interface TransferComponentProps extends Partial<TransferProps> {
+export type TransferComponentProps = {
   on?: {
     change?: (
       value: number | string,
@@ -272,9 +272,9 @@ export interface TransferComponentProps extends Partial<TransferProps> {
     rightFooter?: (...args: any[]) => JSX.Element | null
   }
   style?: CSSProperties
-}
+} & Partial<TransferProps>
 
-export interface RadioOption {
+export type RadioOption = {
   label?: string
   value?: string | number | boolean
   disabled?: boolean
@@ -283,7 +283,7 @@ export interface RadioOption {
   name?: string
   [key: string]: any
 }
-export interface RadioGroupComponentProps extends Partial<RadioGroupProps> {
+export type RadioGroupComponentProps = {
   options?: RadioOption[]
   /**
    * 数据源的字段别名
@@ -300,9 +300,9 @@ export interface RadioGroupComponentProps extends Partial<RadioGroupProps> {
     default?: (...args: any[]) => JSX.Element[] | null
   }
   style?: CSSProperties
-}
+} & Partial<RadioGroupProps>
 
-export interface RadioButtonComponentProps extends Partial<RadioButtonProps> {
+export type RadioButtonComponentProps = {
   options?: RadioOption[]
   /**
    * 数据源的字段别名
@@ -319,9 +319,9 @@ export interface RadioButtonComponentProps extends Partial<RadioButtonProps> {
     default?: (...args: any[]) => JSX.Element[] | null
   }
   style?: CSSProperties
-}
+} & Partial<RadioButtonProps>
 
-export interface CheckboxOption {
+export type CheckboxOption = {
   label?: string
   value?: string | number | boolean
   disabled?: boolean
@@ -339,7 +339,7 @@ export interface CheckboxOption {
   [key: string]: any
 }
 
-export interface CheckboxGroupComponentProps extends Partial<CheckboxGroupProps> {
+export type CheckboxGroupComponentProps = {
   options?: CheckboxOption[]
   /**
    * 数据源的字段别名
@@ -356,17 +356,17 @@ export interface CheckboxGroupComponentProps extends Partial<CheckboxGroupProps>
     default?: (...args: any[]) => JSX.Element[] | null
   }
   style?: CSSProperties
-}
+} & Partial<CheckboxGroupProps>
 
-export interface DividerComponentProps extends Partial<DividerProps> {
+export type DividerComponentProps = {
   on?: {
     change?: (value: number) => void
     input?: (value: number) => void
   }
   style?: CSSProperties
-}
+} & Partial<DividerProps>
 
-export interface DatePickerComponentProps extends Partial<DatePickerProps> {
+export type DatePickerComponentProps = {
   on?: {
     change?: (value: string | Date | number | string[]) => void
     blur?: (event: FocusEvent) => void
@@ -380,9 +380,9 @@ export interface DatePickerComponentProps extends Partial<DatePickerProps> {
     rangeSeparator?: (...args: any[]) => JSX.Element | null
   }
   style?: CSSProperties
-}
+} & Partial<DatePickerProps>
 
-export interface DateTimePickerComponentProps {
+export type DateTimePickerComponentProps = {
   readonly?: boolean
   disabled?: boolean
   editable?: boolean
@@ -422,7 +422,7 @@ export interface DateTimePickerComponentProps {
   style?: CSSProperties
 }
 
-export interface TimePickerComponentProps {
+export type TimePickerComponentProps = {
   readonly?: boolean
   disabled?: boolean
   editable?: boolean
@@ -458,7 +458,7 @@ export interface TimePickerComponentProps {
   style?: CSSProperties
 }
 
-export interface TimeSelectComponentProps {
+export type TimeSelectComponentProps = {
   disabled?: boolean
   editable?: boolean
   clearable?: boolean
@@ -482,12 +482,12 @@ export interface TimeSelectComponentProps {
   style?: CSSProperties
 }
 
-export interface EditorComponentProps {
+export type EditorComponentProps = {
   editorConfig?: IEditorConfig
   style?: CSSProperties
 }
 
-export interface ColProps {
+export type ColProps = {
   span?: number
   xs?: number
   sm?: number
@@ -497,22 +497,22 @@ export interface ColProps {
   tag?: string
 }
 
-export interface FormSetProps {
+export type FormSetProps = {
   field: string
   path: string
   value: any
 }
 
-export interface FormItemProps extends Partial<ElFormItemProps> {
+export type FormItemProps = {
   style?: CSSProperties
   slots?: {
     default?: (...args: any[]) => JSX.Element | null
     label?: (...args: any[]) => JSX.Element | null
     error?: (...args: any[]) => JSX.Element | null
   }
-}
+} & Partial<ElFormItemProps>
 
-export interface UploadComponentProps extends Partial<UploadProps> {
+export type UploadComponentProps = {
   slots?: {
     default?: (...args: any[]) => JSX.Element | null
     trigger?: (...args: any[]) => JSX.Element | null
@@ -520,10 +520,9 @@ export interface UploadComponentProps extends Partial<UploadProps> {
     file?: (...args: any[]) => JSX.Element | null
   }
   style?: CSSProperties
-}
+} & Partial<UploadProps>
 
-export interface TreeSelectComponentProps
-  extends Omit<Partial<SelectComponentProps>, 'props' | 'on' | 'slots'> {
+export type TreeSelectComponentProps = {
   data?: any[]
   emptyText?: string
   nodeKey?: string
@@ -584,9 +583,9 @@ export interface TreeSelectComponentProps
     empty?: (...args: any[]) => JSX.Element | null
   }
   style?: CSSProperties
-}
+} & Omit<Partial<SelectComponentProps>, 'props' | 'on' | 'slots'>
 
-export interface FormSchema {
+export type FormSchema = {
   /**
    * 唯一标识
    */
@@ -660,11 +659,11 @@ export interface FormSchema {
   optionApi?: any
 }
 
-export interface FormProps extends Partial<ElFormProps> {
+export type FormProps = {
   schema?: FormSchema[]
   isCol?: boolean
   model?: Recordable
   autoSetPlaceholder?: boolean
   isCustom?: boolean
   [key: string]: any
-}
+} & Partial<ElFormProps>

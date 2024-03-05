@@ -3,7 +3,7 @@ import { FormItemRule } from 'element-plus'
 
 const { t } = useI18n()
 
-interface LengthRange {
+type LengthRange = {
   min: number
   max: number
   message?: string

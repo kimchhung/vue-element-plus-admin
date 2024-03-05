@@ -54,6 +54,9 @@
   --app-footer-height: 50px;
 
   --transition-time-02: 0.2s;
+
+  font-family: Inter, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 }
 
 .dark {

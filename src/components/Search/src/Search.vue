@@ -1,15 +1,15 @@
 <script setup lang="tsx">
 import { Form, FormSchema, FormSetProps } from '@/components/Form'
-import { PropType, computed, unref, ref, watch, onMounted } from 'vue'
-import { propTypes } from '@/utils/propTypes'
+import { initModel } from '@/components/Form/src/helper'
 import { useForm } from '@/hooks/web/useForm'
 import { findIndex } from '@/utils'
+import { isEmptyVal, isObject } from '@/utils/is'
+import { propTypes } from '@/utils/propTypes'
+import { FormItemProp } from 'element-plus'
 import { cloneDeep, set } from 'lodash-es'
-import { initModel } from '@/components/Form/src/helper'
+import { PropType, computed, onMounted, ref, unref, watch } from 'vue'
 import ActionButton from './components/ActionButton.vue'
 import { SearchProps } from './types'
-import { FormItemProp } from 'element-plus'
-import { isObject, isEmptyVal } from '@/utils/is'
 
 const props = defineProps({
   // 生成Form的布局结构数组
@@ -225,8 +225,7 @@ const defaultExpose = {
   setSchema,
   setValues,
   delSchema,
-  addSchema,
-  getFormData
+  addSchema
 }
 
 onMounted(() => {

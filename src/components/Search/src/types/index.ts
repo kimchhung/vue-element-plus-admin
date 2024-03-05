@@ -1,6 +1,6 @@
 import { FormSchema } from '@/components/Form'
 
-export interface SearchProps {
+export type SearchProps = {
   schema?: FormSchema[]
   isCol?: boolean
   labelWidth?: string | number

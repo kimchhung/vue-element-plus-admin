@@ -1,7 +1,7 @@
-import Editor from './src/Editor.vue'
 import { IDomEditor } from '@wangeditor/editor'
+import Editor from './src/Editor.vue'
 
-export interface EditorExpose {
+export type EditorExpose = {
   getEditorRef: () => Promise<IDomEditor>
 }
 

@@ -16,16 +16,16 @@ export const withInstall = <T>(component: T, alias?: string) => {
 }
 
 /**
- * @param str 需要转下划线的驼峰字符串
- * @returns 字符串下划线
+ * @param str The camel case string that needs to be converted to underline
+ * @returns string underscore
  */
 export const humpToUnderline = (str: string): string => {
   return str.replace(/([A-Z])/g, '-$1').toLowerCase()
 }
 
 /**
- * @param str 需要转驼峰的下划线字符串
- * @returns 字符串驼峰
+ * @param str Underline string that needs to be converted to camel case
+ * @returns string camel case
  */
 export const underlineToHump = (str: string): string => {
   if (!str) return ''
@@ -35,7 +35,7 @@ export const underlineToHump = (str: string): string => {
 }
 
 /**
- * 驼峰转横杠
+ *Hump to horizontal bar
  */
 export const humpToDash = (str: string): string => {
   return str.replace(/([A-Z])/g, '-$1').toLowerCase()
@@ -50,9 +50,9 @@ export const getCssVar = (prop: string, dom = document.documentElement) => {
 }
 
 /**
- * 查找数组对象的某个下标
- * @param {Array} ary 查找的数组
- * @param {Functon} fn 判断的方法
+ * Find a certain subscript of the array object
+ * @param {Array} ary array to search for
+ * @param {Functon} fn judgment method
  */
 // eslint-disable-next-line
 export const findIndex = <T = Recordable>(ary: Array<T>, fn: Fn): number => {

@@ -1,21 +1,12 @@
 <script setup lang="ts">
-import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useDesign } from '@/hooks/web/useDesign'
-import LockDialog from './components/LockDialog.vue'
-import { ref, computed } from 'vue'
-import LockPage from './components/LockPage.vue'
-import { useLockStore } from '@/store/modules/lock'
-import { useUserStore } from '@/store/modules/user'
-import { useRouter } from 'vue-router'
+import { useI18n } from '@/hooks/web/useI18n'
 
-const { push } = useRouter()
+import { useAdminStore } from '@/store/modules/admin'
+import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
+import { ref } from 'vue'
 
-const userStore = useUserStore()
-
-const lockStore = useLockStore()
-
-const getIsLock = computed(() => lockStore.getLockInfo?.isLock ?? false)
+const userStore = useAdminStore()
 
 const { getPrefixCls } = useDesign()
 
@@ -28,19 +19,6 @@ const loginOut = () => {
 }
 
 const dialogVisible = ref<boolean>(false)
-
-// 锁定屏幕
-const lockScreen = () => {
-  dialogVisible.value = true
-}
-
-const toDocument = () => {
-  window.open('https://element-plus-admin-doc.cn/')
-}
-
-const toPage = (path: string) => {
-  push(path)
-}
 </script>
 
 <template>
@@ -58,17 +36,6 @@ const toPage = (path: string) => {
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem>
-          <div @click="toPage('/personal/personal-center')">
-            {{ t('router.personalCenter') }}
-          </div>
-        </ElDropdownItem>
-        <ElDropdownItem>
-          <div @click="toDocument">{{ t('common.document') }}</div>
-        </ElDropdownItem>
-        <ElDropdownItem divided>
-          <div @click="lockScreen">{{ t('lock.lockScreen') }}</div>
-        </ElDropdownItem>
-        <ElDropdownItem>
           <div @click="loginOut">{{ t('common.loginOut') }}</div>
         </ElDropdownItem>
       </ElDropdownMenu>
@@ -77,9 +44,7 @@ const toPage = (path: string) => {
 
   <LockDialog v-if="dialogVisible" v-model="dialogVisible" />
   <teleport to="body">
-    <transition name="fade-bottom" mode="out-in">
-      <LockPage v-if="getIsLock" />
-    </transition>
+    <transition name="fade-bottom" mode="out-in" />
   </teleport>
 </template>
 
@@ -101,3 +66,4 @@ const toPage = (path: string) => {
   transform: translateY(10%);
 }
 </style>
+@/store/modules/admin

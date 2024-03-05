@@ -1,26 +1,31 @@
 <script setup lang="tsx">
-import { reactive, ref, unref } from 'vue'
-import { getMenuListApi } from '@/api/menu'
-import { useTable } from '@/hooks/web/useTable'
-import { useI18n } from '@/hooks/web/useI18n'
-import { Table, TableColumn } from '@/components/Table'
-import { ElTag } from 'element-plus'
+import { getRouteListApi } from '@/api/menu'
+import { BaseButton } from '@/components/Button'
+import { ContentWrap } from '@/components/ContentWrap'
+import { Dialog } from '@/components/Dialog'
+import { FormSchema } from '@/components/Form'
 import { Icon } from '@/components/Icon'
 import { Search } from '@/components/Search'
-import { FormSchema } from '@/components/Form'
-import { ContentWrap } from '@/components/ContentWrap'
-import Write from './components/Write.vue'
+import { Table, TableColumn } from '@/components/Table'
+import { SUCCESS_CODE } from '@/constants'
+import { useI18n } from '@/hooks/web/useI18n'
+import { useTable } from '@/hooks/web/useTable'
+import { ElTag } from 'element-plus'
+import { reactive, ref, unref } from 'vue'
 import Detail from './components/Detail.vue'
-import { Dialog } from '@/components/Dialog'
-import { BaseButton } from '@/components/Button'
+import Write from './components/Write.vue'
 
 const { t } = useI18n()
 
 const { tableRegister, tableState, tableMethods } = useTable({
   fetchDataApi: async () => {
-    const res = await getMenuListApi()
+    const res = await getRouteListApi()
+    if (res.code === SUCCESS_CODE) {
+      return res.data
+    }
+
     return {
-      list: res.data.list || []
+      list: []
     }
   }
 })
@@ -87,13 +92,13 @@ const tableColumns = reactive<TableColumn[]>([
     label: t('menu.path')
   },
   {
-    field: 'status',
+    field: 'isEnable',
     label: t('menu.status'),
     slots: {
       default: (data: any) => {
         return (
           <>
-            <ElTag type={data.row.status === 0 ? 'danger' : 'success'}>
+            <ElTag type={data.row.isEnable ? 'success' : 'danger'}>
               {data.row.status === 1 ? t('userDemo.enable') : t('userDemo.disable')}
             </ElTag>
           </>
@@ -165,7 +170,7 @@ const AddAction = () => {
 const save = async () => {
   const write = unref(writeRef)
   const formData = await write?.submit()
-  console.log(formData)
+
   if (formData) {
     saveLoading.value = true
     setTimeout(() => {

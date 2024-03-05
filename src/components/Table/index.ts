@@ -1,16 +1,16 @@
-import Table from './src/Table.vue'
 import { ElTable } from 'element-plus'
+import Table from './src/Table.vue'
 import { TableColumn, TableSetProps } from './src/types'
 
 export type {
-  TableColumn,
-  TableSlotDefault,
   Pagination,
+  TableColumn,
+  TableProps,
   TableSetProps,
-  TableProps
+  TableSlotDefault
 } from './src/types'
 
-export interface TableExpose {
+export type TableExpose = {
   setProps: (props: Recordable) => void
   setColumn: (columnProps: TableSetProps[]) => void
   addColumn: (column: TableColumn, index?: number) => void
