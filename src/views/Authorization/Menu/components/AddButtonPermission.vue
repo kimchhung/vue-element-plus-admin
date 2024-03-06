@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { FormSchema, Form } from '@/components/Form'
-import { ElDrawer } from 'element-plus'
-import { reactive } from 'vue'
+import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
 import { useValidator } from '@/hooks/web/useValidator'
+import { ElDrawer } from 'element-plus'
+import { reactive } from 'vue'
 
 const modelValue = defineModel<boolean>()
 
@@ -53,7 +53,7 @@ const confirm = async () => {
 </script>
 
 <template>
-  <ElDrawer v-model="modelValue" title="新增按钮权限">
+  <ElDrawer v-model="modelValue" title="New button permissions">
     <template #default>
       <Form :rules="rules" @register="formRegister" :schema="formSchema" />
     </template>

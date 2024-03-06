@@ -22,7 +22,7 @@ const props = defineProps({
 
 const handleClose = async (tag: any) => {
   const formData = await getFormData()
-  // 删除对应的权限
+  // Delete the corresponding permissions
   setValues({
     permissionList: formData?.permissionList?.filter((v: any) => v.value !== tag.value)
   })
@@ -125,8 +125,6 @@ const formSchema = reactive<FormSchema[]>([
     optionApi: async () => {
       const res = await getRouteListApi()
       const list = convertEdgeChildren(res.data.list)
-
-      console.log('list', list)
       return list || []
     }
   },
@@ -137,12 +135,12 @@ const formSchema = reactive<FormSchema[]>([
   },
   {
     field: 'component',
-    label: '组件',
+    label: 'Component',
     component: 'Input',
     value: '#',
     componentProps: {
       disabled: true,
-      placeholder: '#为顶级目录，##为子目录',
+      placeholder: '#Is the top directory, ## is the child directory',
       on: {
         change: (val: string) => {
           cacheComponent.value = val
