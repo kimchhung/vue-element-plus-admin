@@ -64,7 +64,7 @@ const tableColumns = reactive<TableColumn[]>([
   },
   {
     field: 'action',
-    label: t('userDemo.action'),
+    label: t('common.action'),
     width: 240,
     slots: {
       default: (data: any) => {
@@ -166,9 +166,9 @@ const save = async () => {
         :loading="saveLoading"
         @click="save"
       >
-        {{ t('exampleDemo.save') }}
+        {{ t('button.save') }}
       </BaseButton>
-      <BaseButton @click="dialogVisible = false">{{ t('dialogDemo.close') }}</BaseButton>
+      <BaseButton @click="dialogVisible = false">{{ t('button.close') }}</BaseButton>
     </template>
   </Dialog>
 </template>

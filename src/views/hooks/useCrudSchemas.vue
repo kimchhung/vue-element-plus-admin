@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { ContentWrap } from '@/components/ContentWrap'
+import { JsonEditor } from '@/components/JsonEditor'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
 import { useI18n } from '@/hooks/web/useI18n'
+import { ElCol, ElRow } from 'element-plus'
 import { reactive } from 'vue'
-import { JsonEditor } from '@/components/JsonEditor'
-import { ContentWrap } from '@/components/ContentWrap'
-import { ElRow, ElCol } from 'element-plus'
 
 const { t } = useI18n()
 
@@ -137,7 +137,7 @@ const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'action',
     width: '260px',
-    label: t('tableDemo.action'),
+    label: t('common.action'),
     search: {
       hidden: true
     },

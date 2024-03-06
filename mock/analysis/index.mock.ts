@@ -6,7 +6,7 @@ const timeout = 1000
 export default [
   // 分析页统计接口
   {
-    url: '/mock/analysis/total',
+    url: '/mock//total',
     method: 'get',
     timeout,
     response: () => {
@@ -23,7 +23,7 @@ export default [
   },
   // 用户来源
   {
-    url: '/mock/analysis/userAccessSource',
+    url: '/mock//userAccessSource',
     method: 'get',
     timeout,
     response: () => {
@@ -41,7 +41,7 @@ export default [
   },
   // 每周用户活跃量
   {
-    url: '/mock/analysis/weeklyUserActivity',
+    url: '/mock//weeklyUserActivity',
     method: 'get',
     timeout,
     response: () => {
@@ -61,7 +61,7 @@ export default [
   },
   // 每月销售额
   {
-    url: '/mock/analysis/monthlySales',
+    url: '/mock//monthlySales',
     method: 'get',
     timeout,
     response: () => {

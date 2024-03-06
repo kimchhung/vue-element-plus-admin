@@ -8,7 +8,7 @@ const adminList = [
   {
     path: '/dashboard',
     component: '#',
-    redirect: '/dashboard/analysis',
+    redirect: '/dashboard/',
     name: 'Dashboard',
     meta: {
       title: 'router.dashboard',
@@ -18,7 +18,7 @@ const adminList = [
     children: [
       {
         path: 'analysis',
-        component: 'views/Dashboard/Analysis',
+        component: 'views/Dashboard/',
         name: 'Analysis',
         meta: {
           title: 'router.analysis',
@@ -665,7 +665,7 @@ const adminList = [
 
 const testList: string[] = [
   '/dashboard',
-  '/dashboard/analysis',
+  '/dashboard/',
   '/dashboard/workplace',
   'external-link',
   'https://element-plus-admin-doc.cn/',
@@ -747,7 +747,7 @@ const menus = [
     {
       path: '/dashboard',
       component: '#',
-      redirect: '/dashboard/analysis',
+      redirect: '/dashboard/',
       name: 'Dashboard',
       status: Mock.Random.integer(0, 1),
       id: 1,
@@ -759,7 +759,7 @@ const menus = [
       children: [
         {
           path: 'analysis',
-          component: 'views/Dashboard/Analysis',
+          component: 'views/Dashboard/',
           name: 'Analysis',
           status: Mock.Random.integer(0, 1),
           id: 2,
@@ -975,7 +975,7 @@ const menus = [
     {
       path: '/dashboard',
       component: '#',
-      redirect: '/dashboard/analysis',
+      redirect: '/dashboard/',
       name: 'Dashboard',
       status: Mock.Random.integer(0, 1),
       id: 1,
@@ -987,7 +987,7 @@ const menus = [
       children: [
         {
           path: 'analysis',
-          component: 'views/Dashboard/Analysis',
+          component: 'views/Dashboard/',
           name: 'Analysis',
           status: Mock.Random.integer(0, 1),
           id: 2,

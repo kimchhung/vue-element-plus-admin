@@ -1,5 +1,7 @@
 export default {
   common: {
+    action: '行动',
+    index: '指數',
     inputText: '请输入',
     selectText: '请选择',
     startTimeText: '开始时间',
@@ -255,26 +257,43 @@ export default {
     jsonEditor: 'JSON编辑器',
     jsonEditorDes: '基于 vue-json-pretty 二次封装'
   },
-  menu: {
+  meta: {
+    parentName: '父级名称',
     menuName: '菜单名称',
     icon: '图标',
-    permission: '按钮权限',
+    permission: '权限',
     component: '组件',
     path: '路径',
-    status: '状态',
-    hidden: '是否隐藏',
-    alwaysShow: '是否一直显示',
-    noCache: '是否清除缓存',
-    breadcrumb: '是否显示面包屑',
-    affix: '是否固定在标签页',
-    noTagsView: '是否隐藏标签页',
-    activeMenu: '高亮菜单',
-    canTo: '是否可跳转',
-    name: '组件名称'
+    isEnable: '启用',
+    hidden: '隐藏',
+    alwaysShow: '始终显示',
+    noCache: '无缓存',
+    breadcrumb: '面包屑',
+    affix: '固定',
+    noTagsView: '无标签视图',
+    activeMenu: '活动菜单',
+    canTo: '可以到',
+    name: '名称',
+    parent: '父级',
+    type: '类型',
+    title: '标题'
   },
   role: {
     roleName: '角色名称',
     role: '角色',
     menu: '菜单分配'
+  },
+  tagStatus: {
+    enable: '启用',
+    disable: '禁用'
+  },
+  button: {
+    close: '关闭',
+    ok: '确定',
+    edit: '编辑',
+    detail: '详情',
+    remove: '移除',
+    save: '保存',
+    add: '添加'
   }
 }

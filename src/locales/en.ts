@@ -1,5 +1,7 @@
 export default {
   common: {
+    action: 'action',
+    index: 'index',
     inputText: 'Please input',
     selectText: 'Please select',
     startTimeText: 'Start time',
@@ -128,9 +130,7 @@ export default {
     level: 'Multi level menu',
     menu: 'Menu',
     dashboard: 'Dashboard',
-    analysis: 'Analysis',
-    workplace: 'Workplace',
-    guide: 'Guide',
+    welcome: 'Welcome',
     component: 'Component',
     icon: 'Icon',
     echart: 'Echart',
@@ -190,14 +190,14 @@ export default {
     jsonEditor: 'JSON Editor',
     jsonEditorDes: 'Secondary packaging based on vue-json-pretty'
   },
-  menu: {
+  meta: {
+    parentName: 'Parent Name',
     menuName: 'Menu name',
     icon: 'Icon',
-    // 权限
     permission: 'Permission',
     component: 'Component',
     path: 'Path',
-    status: 'Status',
+    isEnable: 'Enable',
     hidden: 'Hidden',
     alwaysShow: 'Always show',
     noCache: 'No cache',
@@ -206,12 +206,28 @@ export default {
     noTagsView: 'No tags view',
     activeMenu: 'Active menu',
     canTo: 'Can to',
-    name: 'Name'
+    name: 'Name',
+    parent: 'Parent',
+    type: 'Type',
+    title: 'Title'
   },
   role: {
     roleName: 'Role name',
     role: 'Role',
     // 菜单分配
     menu: 'Menu allocation'
+  },
+  tagStatus: {
+    enable: 'Enable',
+    disable: 'Disable'
+  },
+  button: {
+    close: 'Close',
+    ok: 'OK',
+    edit: 'Edit',
+    detail: 'Detail',
+    remove: 'Remove',
+    save: 'Save',
+    add: 'Add'
   }
 }

@@ -2,6 +2,7 @@ import axios, { AxiosError } from 'axios'
 import { defaultRequestInterceptors, defaultResponseInterceptors } from './config'
 
 import { REQUEST_TIMEOUT } from '@/constants'
+import { useAdminStoreWithOut } from '@/store/modules/admin'
 import { ElMessage } from 'element-plus'
 import { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig, RequestConfig } from './types'
 
@@ -34,8 +35,15 @@ axiosInstance.interceptors.response.use(
     return res
   },
   (error: AxiosError) => {
-    console.log('err： ' + error) // for debug
-    ElMessage.error(error.message)
+    if ([401, 402, 403].includes(error.response?.status ?? 0)) {
+      ElMessage.error((error.response?.data as any).message)
+      const userStore = useAdminStoreWithOut()
+      userStore.logout()
+    } else {
+      console.log('err： ' + error) // for debug
+      ElMessage.error(error.message)
+    }
+
     return Promise.reject(error)
   }
 )

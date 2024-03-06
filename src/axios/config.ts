@@ -42,7 +42,7 @@ const defaultResponseInterceptors = (response: AxiosResponse) => {
     return response.data
   } else {
     ElMessage.error(response?.data?.message)
-    if ([401, 402].includes(response.status)) {
+    if ([401, 402, 403].includes(response.status)) {
       const userStore = useAdminStoreWithOut()
       userStore.logout()
     }

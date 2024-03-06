@@ -53,7 +53,7 @@ const save = async () => {
         {{ t('common.back') }}
       </BaseButton>
       <BaseButton type="primary" :loading="loading" @click="save">
-        {{ t('exampleDemo.save') }}
+        {{ t('button.save') }}
       </BaseButton>
     </template>
   </ContentDetailWrap>

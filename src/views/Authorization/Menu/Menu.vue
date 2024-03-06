@@ -1,5 +1,8 @@
 <script setup lang="tsx">
+import { convertEdgeChildren } from '@/api/admin/types'
 import { getRouteListApi } from '@/api/menu'
+import { AdminRoute } from '@/api/role'
+import { useApi } from '@/axios'
 import { BaseButton } from '@/components/Button'
 import { ContentWrap } from '@/components/ContentWrap'
 import { Dialog } from '@/components/Dialog'
@@ -7,7 +10,6 @@ import { FormSchema } from '@/components/Form'
 import { Icon } from '@/components/Icon'
 import { Search } from '@/components/Search'
 import { Table, TableColumn } from '@/components/Table'
-import { SUCCESS_CODE } from '@/constants'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useTable } from '@/hooks/web/useTable'
 import { ElTag } from 'element-plus'
@@ -19,13 +21,11 @@ const { t } = useI18n()
 
 const { tableRegister, tableState, tableMethods } = useTable({
   fetchDataApi: async () => {
-    const res = await getRouteListApi()
-    if (res.code === SUCCESS_CODE) {
-      return res.data
-    }
+    const [data] = await useApi(() => getRouteListApi())
+    if (!data?.list) return { list: [] }
 
     return {
-      list: []
+      list: convertEdgeChildren(data.list)
     }
   }
 })
@@ -33,17 +33,17 @@ const { tableRegister, tableState, tableMethods } = useTable({
 const { dataList, loading } = tableState
 const { getList } = tableMethods
 
-const tableColumns = reactive<TableColumn[]>([
+const tableColumns = reactive<TableColumn<AdminRoute>[]>([
   {
     field: 'index',
-    label: t('userDemo.index'),
+    label: t('common.index'),
     type: 'index'
   },
   {
     field: 'meta.title',
-    label: t('menu.menuName'),
+    label: t('meta.title'),
     slots: {
-      default: (data: any) => {
+      default: (data) => {
         const title = data.row.meta.title
         return <>{title}</>
       }
@@ -51,9 +51,9 @@ const tableColumns = reactive<TableColumn[]>([
   },
   {
     field: 'meta.icon',
-    label: t('menu.icon'),
+    label: t('meta.icon'),
     slots: {
-      default: (data: any) => {
+      default: (data) => {
         const icon = data.row.meta.icon
         if (icon) {
           return (
@@ -69,9 +69,9 @@ const tableColumns = reactive<TableColumn[]>([
   },
   // {
   //   field: 'meta.permission',
-  //   label: t('menu.permission'),
+  //   label: t('meta.permission'),
   //   slots: {
-  //     default: (data: any) => {
+  //     default: (data) => {
   //       const permission = data.row.meta.permission
   //       return permission ? <>{permission.join(', ')}</> : null
   //     }
@@ -79,9 +79,9 @@ const tableColumns = reactive<TableColumn[]>([
   // },
   {
     field: 'component',
-    label: t('menu.component'),
+    label: t('meta.component'),
     slots: {
-      default: (data: any) => {
+      default: (data) => {
         const component = data.row.component
         return <>{component === '#' ? '顶级目录' : component === '##' ? '子目录' : component}</>
       }
@@ -89,17 +89,17 @@ const tableColumns = reactive<TableColumn[]>([
   },
   {
     field: 'path',
-    label: t('menu.path')
+    label: t('meta.path')
   },
   {
     field: 'isEnable',
-    label: t('menu.status'),
+    label: t('meta.isEnable'),
     slots: {
-      default: (data: any) => {
+      default: (data) => {
         return (
           <>
             <ElTag type={data.row.isEnable ? 'success' : 'danger'}>
-              {data.row.status === 1 ? t('userDemo.enable') : t('userDemo.disable')}
+              {data.row.isEnable ? t('tagStatus.enable') : t('tagStatus.disable')}
             </ElTag>
           </>
         )
@@ -108,20 +108,20 @@ const tableColumns = reactive<TableColumn[]>([
   },
   {
     field: 'action',
-    label: t('userDemo.action'),
+    label: t('common.action'),
     width: 240,
     slots: {
-      default: (data: any) => {
+      default: (data) => {
         const row = data.row
         return (
           <>
             <BaseButton type="primary" onClick={() => action(row, 'edit')}>
-              {t('exampleDemo.edit')}
+              {t('button.edit')}
             </BaseButton>
             <BaseButton type="success" onClick={() => action(row, 'detail')}>
-              {t('exampleDemo.detail')}
+              {t('button.detail')}
             </BaseButton>
-            <BaseButton type="danger">{t('exampleDemo.del')}</BaseButton>
+            <BaseButton type="danger">{t('button.del')}</BaseButton>
           </>
         )
       }
@@ -132,13 +132,13 @@ const tableColumns = reactive<TableColumn[]>([
 const searchSchema = reactive<FormSchema[]>([
   {
     field: 'meta.title',
-    label: t('menu.menuName'),
+    label: t('meta.menuName'),
     component: 'Input'
   }
 ])
 
 const searchParams = ref({})
-const setSearchParams = (data: any) => {
+const setSearchParams = (data) => {
   searchParams.value = data
   getList()
 }
@@ -153,15 +153,15 @@ const writeRef = ref<ComponentRef<typeof Write>>()
 
 const saveLoading = ref(false)
 
-const action = (row: any, type: string) => {
-  dialogTitle.value = t(type === 'edit' ? 'exampleDemo.edit' : 'exampleDemo.detail')
+const action = (row, type: string) => {
+  dialogTitle.value = t(type === 'edit' ? 'button.edit' : 'button.detail')
   actionType.value = type
   currentRow.value = row
   dialogVisible.value = true
 }
 
 const AddAction = () => {
-  dialogTitle.value = t('exampleDemo.add')
+  dialogTitle.value = t('button.add')
   currentRow.value = undefined
   dialogVisible.value = true
   actionType.value = ''
@@ -185,7 +185,7 @@ const save = async () => {
   <ContentWrap>
     <Search :schema="searchSchema" @reset="setSearchParams" @search="setSearchParams" />
     <div class="mb-10px">
-      <BaseButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</BaseButton>
+      <BaseButton type="primary" @click="AddAction">{{ t('button.add') }}</BaseButton>
     </div>
     <Table
       :columns="tableColumns"
@@ -209,9 +209,9 @@ const save = async () => {
         :loading="saveLoading"
         @click="save"
       >
-        {{ t('exampleDemo.save') }}
+        {{ t('button.save') }}
       </BaseButton>
-      <BaseButton @click="dialogVisible = false">{{ t('dialogDemo.close') }}</BaseButton>
+      <BaseButton @click="dialogVisible = false">{{ t('button.close') }}</BaseButton>
     </template>
   </Dialog>
 </template>

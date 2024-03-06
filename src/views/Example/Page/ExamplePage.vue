@@ -213,7 +213,7 @@ const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'action',
     width: '260px',
-    label: t('tableDemo.action'),
+    label: t('common.action'),
     search: {
       hidden: true
     },

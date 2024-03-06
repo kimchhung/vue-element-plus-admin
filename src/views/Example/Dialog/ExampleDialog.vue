@@ -196,7 +196,7 @@ const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'action',
     width: '260px',
-    label: t('tableDemo.action'),
+    label: t('common.action'),
     search: {
       hidden: true
     },
@@ -330,9 +330,9 @@ const save = async () => {
         :loading="saveLoading"
         @click="save"
       >
-        {{ t('exampleDemo.save') }}
+        {{ t('button.save') }}
       </BaseButton>
-      <BaseButton @click="dialogVisible = false">{{ t('dialogDemo.close') }}</BaseButton>
+      <BaseButton @click="dialogVisible = false">{{ t('button.close') }}</BaseButton>
     </template>
   </Dialog>
 </template>

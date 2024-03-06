@@ -1,11 +1,10 @@
 <script setup lang="tsx">
+import { convertEdgeChildren } from '@/api/admin/types'
 import { getRouteListApi } from '@/api/menu'
-import { BaseButton } from '@/components/Button'
 import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useValidator } from '@/hooks/web/useValidator'
-import { ElTag } from 'element-plus'
 import { cloneDeep } from 'lodash-es'
 import { PropType, reactive, ref, unref, watch } from 'vue'
 import AddButtonPermission from './AddButtonPermission.vue'
@@ -34,7 +33,7 @@ const showDrawer = ref(false)
 const formSchema = reactive<FormSchema[]>([
   {
     field: 'type',
-    label: '菜单类型',
+    label: t('meta.type'),
     component: 'RadioButton',
     value: 0,
     colProps: {
@@ -43,11 +42,11 @@ const formSchema = reactive<FormSchema[]>([
     componentProps: {
       options: [
         {
-          label: '目录',
+          label: 'Table of contents',
           value: 0
         },
         {
-          label: '菜单',
+          label: 'menu',
           value: 1
         }
       ],
@@ -90,12 +89,12 @@ const formSchema = reactive<FormSchema[]>([
   },
   {
     field: 'parentId',
-    label: '父级菜单',
+    label: 'Parent menu',
     component: 'TreeSelect',
     componentProps: {
       nodeKey: 'id',
       props: {
-        label: 'title',
+        label: 'name',
         value: 'id',
         children: 'children'
       },
@@ -125,12 +124,15 @@ const formSchema = reactive<FormSchema[]>([
     },
     optionApi: async () => {
       const res = await getRouteListApi()
-      return res.data.list || []
+      const list = convertEdgeChildren(res.data.list)
+
+      console.log('list', list)
+      return list || []
     }
   },
   {
     field: 'meta.title',
-    label: t('menu.menuName'),
+    label: t('meta.title'),
     component: 'Input'
   },
   {
@@ -150,100 +152,75 @@ const formSchema = reactive<FormSchema[]>([
   },
   {
     field: 'name',
-    label: t('menu.name'),
+    label: t('meta.name'),
     component: 'Input'
   },
   {
     field: 'meta.icon',
-    label: t('menu.icon'),
+    label: t('meta.icon'),
     component: 'Input'
   },
   {
     field: 'path',
-    label: t('menu.path'),
+    label: t('meta.path'),
     component: 'Input'
   },
   {
     field: 'meta.activeMenu',
-    label: t('menu.activeMenu'),
+    label: t('meta.activeMenu'),
     component: 'Input'
   },
   {
-    field: 'status',
-    label: t('menu.status'),
+    field: 'isEnable',
+    label: t('meta.isEnable'),
     component: 'Select',
     componentProps: {
       options: [
         {
-          label: t('userDemo.disable'),
+          label: t('tagStatus.disable'),
           value: 0
         },
         {
-          label: t('userDemo.enable'),
+          label: t('tagStatus.enable'),
           value: 1
         }
       ]
     }
   },
-  {
-    field: 'permissionList',
-    label: t('menu.permission'),
-    component: 'CheckboxGroup',
-    colProps: {
-      span: 24
-    },
-    formItemProps: {
-      slots: {
-        default: (data: any) => (
-          <>
-            {data?.permissionList?.map((v) => {
-              return (
-                <ElTag class="mr-1" key={v.value} closable onClose={() => handleClose(v)}>
-                  {v.label}
-                </ElTag>
-              )
-            })}
-            <BaseButton type="primary" size="small" onClick={() => (showDrawer.value = true)}>
-              添加权限
-            </BaseButton>
-          </>
-        )
-      }
-    }
-  },
+
   {
     field: 'meta.hidden',
-    label: t('menu.hidden'),
+    label: t('meta.hidden'),
     component: 'Switch'
   },
   {
     field: 'meta.alwaysShow',
-    label: t('menu.alwaysShow'),
+    label: t('meta.alwaysShow'),
     component: 'Switch'
   },
   {
     field: 'meta.noCache',
-    label: t('menu.noCache'),
+    label: t('meta.noCache'),
     component: 'Switch'
   },
   {
     field: 'meta.breadcrumb',
-    label: t('menu.breadcrumb'),
+    label: t('meta.breadcrumb'),
     component: 'Switch'
   },
   {
     field: 'meta.affix',
-    label: t('menu.affix'),
+    label: t('meta.affix'),
     component: 'Switch'
   },
   {
     field: 'meta.noTagsView',
-    label: t('menu.noTagsView'),
+    label: t('meta.noTagsView'),
     component: 'Switch'
   },
   {
     field: 'meta.canTo',
-    label: t('menu.canTo'),
+    label: t('meta.canTo'),
     component: 'Switch'
   }
 ])

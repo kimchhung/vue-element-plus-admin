@@ -47,10 +47,12 @@ router.beforeEach(async (to, from, next) => {
       permissionStore.getAddRouters.forEach((route) => {
         router.addRoute(route as unknown as RouteRecordRaw) // Dynamic adding accessable routing table
       })
+
       const redirectPath = from.query.redirect || to.path
       const redirect = decodeURIComponent(redirectPath as string)
       const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect }
       permissionStore.setIsAddRouters(true)
+
       next(nextData)
     }
   } else {
